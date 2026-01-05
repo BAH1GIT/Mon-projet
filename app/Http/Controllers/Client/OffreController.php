@@ -17,7 +17,6 @@ class OffreController extends Controller
         $missions = Mission::with('offres.executant')
             ->where('client_id', Auth::id())
             ->get();
-
         return view('client.offres.index', compact('missions'));
     }
     public function show(Offre $offre) {}
@@ -45,10 +44,11 @@ class OffreController extends Controller
                 'mission_id' => $offre->mission_id,
                 'client_id' => Auth::id(),
                 'montant' => $offre->montant,
-                'commision_montant' => $commissionMontant,
+                'commission_montant' => $commissionMontant,
                 'montant_net' => $montantNet,
                 'commission_pourcentage' => 10,
                 'status' => 'en_attente',
+                'executant_id'=> $offre->executant_id,
             ]);
         });
         return redirect()->route('client.paiements.show', $offre->mission_id)->with('success', 'Offre accepter. Procedure de paiement.');

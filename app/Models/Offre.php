@@ -25,5 +25,8 @@ class Offre extends Model
         return $this->belongsTo(Mission::class,"mission_id");
     }
 
+    public function client(){
+        return $this->mission->client ?? null;
+    }
 
 }

@@ -13,26 +13,26 @@ use App\Http\Controllers\Client\OffreController as ClientOffre;
 use App\Http\Controllers\ExecutantDashboardController;
 use App\Http\Controllers\PaiementController;
 
+
+/* ================= ROUTE ACCUEILL ================= */
+
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-/* ================= ADMIN ================= */
+/* ================= ROUTE ADMIN ================= */
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::resource('missions', AdminMission::class)->except('create','store');
     Route::resource('offres', AdminOffre::class)->only('index','show','destroy');
 });
 
-/* ================= CLIENT ================= */
+/* ================= ROUTE CLIENT ================= */
 Route::middleware(['auth','client'])->prefix('client')->name('client.')->group(function () {
     Route::get('/dashboard',[ClientDashboardController::class,'index'])->name('dashboard');
     Route::resource('/missions', ClientMission::class);
@@ -44,14 +44,14 @@ Route::middleware(['auth','client'])->prefix('client')->name('client.')->group(f
  
 
 
-/* ================= EXECUTANT ================= */
+/* ================= ROUTE EXECUTANT ================= */
 Route::middleware(['auth', 'executant'])->prefix('executant')->name('executant.')->group(function () {
     Route::get('/dashboard', [ExecutantDashboardController::class, 'index'])->name('dashboard');
     Route::resource('offres',ExecutantOffre::class)->except('create');
     Route::get('offres/create/{mission}',[ExecutantOffre::class,'create'])->name('offres.create');
-    Route::get('mission',[ExecutantOffre::class,'dispo'])->name('mission.dispo');
-    Route::get('mission-disponible',[MissionController::class,'indexDisponible'])->name('missions.disponible');
-    Route::get('mission-show',[MissionController::class,'show'])->name('missions.show');
+    Route::get('mission-dispo',[ExecutantOffre::class,'dispo'])->name('mission.dispo');
+    Route::get('mission-soumi',[MissionController::class,'indexDisponible'])->name('missions.disponible');
+    Route::get('mission-show/{offre}',[MissionController::class,'show'])->name('missions.show');
 });
 
 require __DIR__.'/auth.php';

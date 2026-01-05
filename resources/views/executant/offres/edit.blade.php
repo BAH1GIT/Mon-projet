@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h2>Modifier l’Offre</h2>
+        <h2 class="text-center">Modifier l’Offre</h2>
 
        
 
@@ -15,24 +15,22 @@
                 <div class="card mb-3 col-6 ">
                     <div class=" mb-3">
                         <label class="form-label"><strong>Mission</strong></label>
-                        <p class="form-control">{{$offre->mission->title }}</p>
+                        <p class="form-control mb-2"><strong>Titre : </strong>{{$offre->mission->title }}</p>
+                        <p class="form-control  mb-2"><strong>Client : </strong>{{$offre->mission->client->name }}</p>
+                        <p class="form-control"><strong>Budget MAX : </strong>{{$offre->mission->budget_max }}</p>
                         <input type="hidden" name="mission_id" value="{{ $offre->mission->id }} ">
                         @error('mission_id')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
-                    <div class=" mb-3">
-                        <label class="form-label"><strong>Budget MAX</strong></label>
-                        <input type="text" name="montant" class="form-control" min="1"
-                            value="{{ $offre->mission->budget_max }}    ">
-                    </div>
+                  
                 </div>
 
                 <div class="card mb-3 col-6">
 
                     <div class="mb-3">
-                        <label class="form-label">Montant de l'offre </label>
+                        <label class="form-label"><strong>Offre proposer</strong></label>
                         <input type="text" name="montant" value="{{ $offre->montant }}" class="form-control" min="1" required>
                         @error('montant')
                             <small class="text-danger">{{ $message }}</small>
@@ -40,7 +38,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Message descriptif</label>
+                        <label class="form-label"><strong>Message descriptif</strong></label>
                         <textarea name="message" class="form-control">{{ $offre->message }}</textarea>
                     </div>
                 </div>

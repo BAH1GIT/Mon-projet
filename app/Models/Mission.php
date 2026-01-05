@@ -35,7 +35,7 @@ class Mission extends Model
     {
         return $this->hasMany(Offre::class);
     }
-    public function payements()
+    public function paiements()
     {
         return $this->hasOne(Paiement::class);
     }

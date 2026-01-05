@@ -6,6 +6,7 @@ use App\Models\Offre;
 use App\Models\Mission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class OffreController extends Controller
@@ -19,13 +20,17 @@ class OffreController extends Controller
             ->where('executant_id', Auth::id())
             ->latest()
             ->get();
-
-        return view('executant.offres.index', compact('offres'));
+        return view('executant.offres.index', compact('offres',));
     }
 
     public function dispo()
     {
-        $missions = Mission::all();
+        $missions = Mission::whereIn('status', [
+            'en_attente',
+            'reception_offre'
+        ])
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('executant.missions.dispo', compact('missions'));
     }
 
@@ -34,14 +39,6 @@ class OffreController extends Controller
      */
     public function create(Mission $mission)
     {
-
-        // Sécurité : mission publiée seulement
-        // if ($mission->status !== 'en_attent' || $mission->status!=='reception_offre') {
-        //     abort(403, 'Vous ne pouvez pas créer une offre sur cette mission.');
-        // }
-        // $missions = Mission::all(); // ou seulement disponibles
-        // return view('executant.offres.create', compact('missions'));
-
         return view('executant.offres.create', compact('mission'));
     }
 
@@ -76,7 +73,6 @@ class OffreController extends Controller
         $offre = Offre::with('mission')
             ->where('executant_id', Auth::id())
             ->findOrFail($id);
-
         return view('executant.offres.show', compact('offre'));
     }
 

@@ -7,22 +7,23 @@
             @csrf
             <input type="hidden" name="executant_id" value="{{ auth()->id() }}">
             <div class="row mt-2 ">
-                 <div class="card mb-3 col-6 ">
-                <div class=" mb-3">
-                    <label class="form-label"><strong>Mission</strong></label>
-                   <p class="form-control" >{{ $mission->title }}</p>
-                   <input type="hidden" name="mission_id" value="{{ $mission->id }} ">
-                    @error('mission_id')
-                        <small class="text-danger">{{ $message }}</small>
-                    @enderror
-                </div>
+                <div class="card mb-3 col-6 ">
+                    <div class=" mb-3">
+                        <label class="form-label"><strong>Mission</strong></label>
+                        <p class="form-control">{{ $mission->title }}</p>
+                        <input type="hidden" name="mission_id" value="{{ $mission->id }} ">
+                        @error('mission_id')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
 
-                <div class=" mb-3">
-                    <label class="form-label"><strong>Budget MAX</strong></label>
-                    <input type="text" name="montant" class="form-control" min="1"
-                        value="{{ $mission->budget_max }}    ">
+                    <div class=" mb-3">
+                        <label class="form-label"><strong>Budget MAX</strong></label>
+                        <p class="form-control">{{ $mission->budget_max }}</p>
+                        <input type="hidden" name="mission_id" class="form-control" min="1"
+                            value="{{ $mission->id }}" readonly>
+                    </div>
                 </div>
-            </div>
 
                 <div class="card mb-3 col-6">
 
@@ -40,10 +41,10 @@
                     </div>
                 </div>
             </div>
-           <div class="d-flex justify-content-end me-4">
+            <div class="d-flex justify-content-end me-4">
                 <button class="btn btn-outline-success">Envoyer l’offre</button>
 
-           </div>
+            </div>
 
         </form>
     </div>

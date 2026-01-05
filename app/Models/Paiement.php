@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Paiement extends Model
 {
-      protected $fillables = [
+      protected $fillable = [
         'mission_id',
         'client_id',
         'executant_id',
@@ -19,6 +19,9 @@ class Paiement extends Model
     ];
 
     public function mission(){
-        return $this->belongsTo(Mission::class);
+        return $this->belongsTo(Mission::class,'mission_id');
+    }
+    public function executant(){
+        return $this->belongsTo(User::class,'executant_id');
     }
 }

@@ -16,14 +16,15 @@
 
             <h5>Détails de la mission</h5>
             <ul>
+                <li><strong>Titre de la mission :</strong> {{ $mission->title }}</li>
                 <li><strong>Description :</strong> {{ $mission->description }}</li>
-                <li><strong>Exécutant :</strong> {{ $paiement->executant->name ?? '—' }}</li>
+                <li><strong>Exécutant :</strong> {{ $offre->executant->name ?? '—' }}</li>
             </ul>
 
             <h5>Montant du paiement</h5>
             <ul>
                 <li><strong>Montant total :</strong> {{ number_format($paiement->montant, 0, ',', ' ') }} FCFA</li>
-                <li><strong>Commission ({{ $paiement->commission_pourcentage }}%) :</strong> {{ number_format($paiement->commission_montant, 0, ',', ' ') }} FCFA</li>
+                <li><strong>Commission : </strong> {{ $paiement->commission_pourcentage }}%  </li>
                 <li><strong>Montant net pour l’exécutant :</strong> {{ number_format($paiement->montant_net, 0, ',', ' ') }} FCFA</li>
                 <li><strong>Status :</strong> 
                     <span class="badge bg-{{ $paiement->status == 'en_attente' ? 'warning' : ($paiement->status == 'payer' ? 'success' : 'danger') }}">

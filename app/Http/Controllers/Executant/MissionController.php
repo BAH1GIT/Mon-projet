@@ -27,13 +27,9 @@ class MissionController extends Controller
 
     public function show(Mission $mission )
 
-    {
-        // Récupère l'offre spécifique de l'exécutant pour cette mission
-        $offre = Offre::where('mission_id', $mission->id)
-            ->where('executant_id', auth::id())
-            ->first();
-
-        // Passe la variable $offre à la vue
+    {   $offre = Offre::with('mission')
+            ->where('executant_id', Auth::id())
+            ->findOrFail($mission->offre_id);
         return view('executant.missions.show', compact('mission', 'offre'));
     }
 }

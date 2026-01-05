@@ -11,6 +11,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
+                <th>Client</th>
                 <th>Mission</th>
                 <th>Montant</th>
                 <th>Message</th>
@@ -21,6 +22,7 @@
         <tbody>
         @forelse($offres as $offre)
             <tr>
+                <td>{{ $offre->mission->client->name ?? '—' }}</td>
                 <td>{{ $offre->mission->title ?? '—' }}</td>
                 <td>{{ number_format($offre->montant, 0, ',', ' ') }} FCFA</td>
                 <td>{{ $offre->message }}</td>

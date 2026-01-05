@@ -14,7 +14,7 @@ class PaiementController extends Controller
   }
 
   public function show(Mission $mission){
-    $paiement = Paiement::where('mission_id', $mission->id)->firstOrFail();
+    $paiement = Paiement::with('executant')->where('mission_id', $mission->id)->firstOrFail();
     return view('client.paiements.show', compact('paiement','mission'));
   }
 }

@@ -9,6 +9,9 @@
             <strong>Mission :</strong> {{ $offre->mission->title }}
         </li>
         <li class="list-group-item">
+            <strong>Client :</strong> {{ $offre->mission->client->name }}
+        </li>
+        <li class="list-group-item">
             <strong>Montant :</strong> {{ number_format($offre->montant, 0, ',', ' ') }} FCFA
         </li>
         <li class="list-group-item">
