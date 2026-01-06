@@ -12,6 +12,7 @@ use App\Http\Controllers\Executant\MissionController;
 use App\Http\Controllers\Client\OffreController as ClientOffre;
 use App\Http\Controllers\ExecutantDashboardController;
 use App\Http\Controllers\PaiementController;
+use App\Http\Controllers\Client\PaiementController as ClientPaiement;
 
 
 /* ================= ROUTE ACCUEILL ================= */
@@ -30,6 +31,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::resource('missions', AdminMission::class)->except('create','store');
     Route::resource('offres', AdminOffre::class)->only('index','show','destroy');
+    Route::get('/paiement',[PaiementController::class,'index'])->name('paiements.index');
 });
 
 /* ================= ROUTE CLIENT ================= */
@@ -39,7 +41,8 @@ Route::middleware(['auth','client'])->prefix('client')->name('client.')->group(f
     Route::get('/offres',[ClientOffre::class,'index'])->name('offres.index');
     Route::get('/offres/{offre}/show',[ClientOffre::class,'show'])->name('offres.show');
     Route::post('/offres/{offre}/accepter',[ClientOffre::class,'accepter'])->name('offres.accepter');
-    Route::get('/paiement/{mission}',[PaiementController::class,'show'])->name('paiements.show');
+    Route::get('/paiement/{mission}',[ClientPaiement::class,'show'])->name('paiements.show');
+    Route::get('/paiement',[ClientPaiement::class,'index'])->name('paiements.index');
 });
  
 

@@ -11,91 +11,93 @@
             </div>
         @endif
 
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table align-middle table-hover">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Mission</th>
-                                <th>Exécutant</th>
-                                <th>Montant</th>
-                                <th>Message</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($missions as $mission)
-                                @forelse($mission->offres as $offre)
-                                    <tr>
-                                        <td>{{ $mission->title }}</td>
-                                        <td>{{ $offre->executant->name ?? '—' }}</td>
-                                        <td>{{ number_format($offre->montant, 0, ',', ' ') }} FCFA</td>
-                                        <td>{{ $offre->message ?? '-' }}</td>
-                                        <td>
-                                            @php
-                                                $statusColors = [
-                                                    'en_attente' => 'warning',
-                                                    'accepter' => 'success',
-                                                    'refuser' => 'danger',
-                                                ];
-                                            @endphp
-                                            <span class="badge bg-{{ $statusColors[$offre->status] ?? 'secondary' }}">
-                                                {{ ucfirst(str_replace('_', ' ', $offre->status)) }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                        <td>
-                                            {{-- Offre en attente --}}
-                                            @if ($offre->status === 'en_attente')
-                                                <form action="{{ route('client.offres.accepter', $offre) }}" method="POST"
-                                                    class="d-inline">
-                                                    @csrf
-                                                    <button class="btn btn-sm btn-outline-success">
-                                                        <i class="bi bi-check-lg"></i> Accepter
-                                                    </button>
-                                                </form>
 
-                                                <a href="{{ route('client.offres.show', $offre) }}"
-                                                    class="btn btn-sm btn-outline-primary">
-                                                    <i class="bi bi-eye"></i> Voir offre
-                                                </a>
+        @forelse($missions as $mission)
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="bi bi-briefcase"></i>
+                        {{ $mission->title }}
+                    </h5>
+                    <span class="badge bg-primary">
+                        {{ $mission->offres->count() }} offre(s)
+                    </span>
+                </div>
 
-                                                {{-- Offre acceptée --}}
-                                            @elseif ($offre->status === 'acceptee')
-                                                <a href="{{ route('client.paiements.show', $mission) }}"
-                                                    class="btn btn-sm btn-success">
-                                                    <i class="bi bi-credit-card"></i> Procéder au paiement
-                                                </a>
+                <div class="card-body">
+                    @forelse($mission->offres as $offre)
+                        <div class="border rounded p-3 mb-3">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <strong>Exécutant</strong><br>
+                                    {{ $offre->executant->name ?? '—' }}
+                                </div>
 
-                                                {{-- Offre refusée --}}
-                                            @else
-                                                <a href="{{ route('client.offres.show', $offre) }}"
-                                                    class="btn btn-sm btn-outline-secondary">
-                                                    <i class="bi bi-eye"></i> Voir offre
-                                                </a>
-                                            @endif
-                                        </td>
+                                <div class="col-md-2">
+                                    <strong>Montant</strong><br>
+                                    {{ number_format($offre->montant, 0, ',', ' ') }} FCFA
+                                </div>
 
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6">Aucune offre pour {{ $mission->title }}</td>
-                                    </tr>
-                                @endforelse
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center">Vous n’avez aucune mission</td>
-                                </tr>
-                            @endforelse
+                                <div class="col-md-3">
+                                    <strong>Message</strong><br>
+                                    {{ $offre->message ?? '-' }}
+                                </div>
 
+                                <div class="col-md-2">
+                                    <strong>Statut</strong><br>
+                                    @php
+                                        $statusColors = [
+                                            'en_attente' => 'warning',
+                                            'accepter' => 'success',
+                                            'refuser' => 'danger',
+                                        ];
+                                    @endphp
+                                    <span class="badge bg-{{ $statusColors[$offre->status] ?? 'secondary' }}">
+                                        {{ ucfirst(str_replace('_', ' ', $offre->status)) }}
+                                    </span>
+                                </div>
 
-                        </tbody>
-                    </table>
+                                <div class="col-md-2 text-end">
+                                    @if ($offre->status === 'en_attente')
+                                        <form action="{{ route('client.offres.accepter', $offre) }}" method="POST"
+                                            class="d-inline">
+                                            @csrf
+                                            <button class="btn btn-sm btn-outline-success w-100 mb-1">
+                                                <i class="bi bi-check-lg"></i> Accepter
+                                            </button>
+                                        </form>
+
+                                        <a href="{{ route('client.offres.show', $offre->id) }}"
+                                            class="btn btn-sm btn-outline-primary w-100">
+                                            Voir offre
+                                        </a>
+                                    @elseif ($offre->status === 'payer')
+                                        <a href="{{ route('client.paiements.show', $offre->id) }}"
+                                            class="btn btn-sm btn-success w-100">
+                                            <i class="bi bi-credit-card"></i> Paiement
+                                        </a>
+                                    @else
+                                        <a href="{{ route('client.paiements.show', $offre->id) }}"
+                                            class="btn btn-sm btn-outline-secondary w-100">
+                                            Voir offre
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="text-muted mb-0">
+                            Aucune offre pour cette mission
+                        </p>
+                    @endforelse
                 </div>
             </div>
-        </div>
+        @empty
+            <div class="alert alert-info text-center">
+                Vous n’avez aucune mission
+            </div>
+        @endforelse
+    </div>
+
     </div>
 @endsection

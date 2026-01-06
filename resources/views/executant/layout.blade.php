@@ -15,7 +15,6 @@
                     <li><a href="{{ route('executant.missions.disponible') }}">mission Avec Offre</a></li>
                     <li><a href="{{ route('executant.offres.index') }}">offres</a></li>
                     <li><a href="{{ route('executant.mission.dispo') }}">Mission disponible</a></li>
-                    <li><a href=""></a></li>
                 </ul>
             </div>
 

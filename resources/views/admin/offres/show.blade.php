@@ -12,27 +12,29 @@
                 <li class="list-group-item"><strong>Montant :</strong> {{ number_format($offre->montant, 0, ',', ' ') }} FCFA</li>
                 <li class="list-group-item"><strong>Message :</strong> {{ $offre->message ?? '-' }}</li>
                 <li class="list-group-item">
-                    <strong>Status :</strong>
-                    @php
-                        $statusColors = [
-                            'en_attente' => 'warning',
-                            'acceptee' => 'success',
-                            'refusee' => 'danger'
-                        ];
-                    @endphp
-                    <span class="badge bg-{{ $statusColors[$offre->status] ?? 'secondary' }}">
-                        {{ ucfirst(str_replace('_', ' ', $offre->status)) }}
-                    </span>
+                    <div class="col-md-2">
+                                <strong>Statut</strong><br>
+                                @php
+                                    $statusColors = [
+                                        'en_attente' => 'warning',
+                                        'accepter' => 'success',
+                                        'refuser' => 'danger',
+                                    ];
+                                @endphp
+                                <span class="badge bg-{{ $statusColors[$offre->status] ?? 'secondary' }}">
+                                    {{ ucfirst(str_replace('_', ' ', $offre->status)) }}
+                                </span>
+                            </div>
                 </li>
             </ul>
 
             <div class="mt-4">
-                <a href="{{ route('admin.offres.index') }}" class="btn btn-secondary">Retour</a>
+                <a href="{{ route('admin.offres.index') }}" class="btn btn-outline-secondary">Retour</a>
 
                 <form action="{{ route('admin.offres.destroy', $offre->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger" onclick="return confirm('Supprimer cette offre ?')">
+                    <button class="btn btn-outline-danger" onclick="return confirm('Supprimer cette offre ?')">
                         Supprimer
                     </button>
                 </form>

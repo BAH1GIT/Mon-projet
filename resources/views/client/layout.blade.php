@@ -14,7 +14,7 @@
                 <ul>
                     <li><a href="{{ route('client.missions.index') }}">mission</a></li>
                     <li><a href="{{ route('client.offres.index') }}">offres</a></li>
-                    <li><a href=""></a></li>
+                    <li><a href="{{ route('client.paiements.index') }}">paiements</a></li>
                     <li><a href=""></a></li>
                 </ul>
             </div>

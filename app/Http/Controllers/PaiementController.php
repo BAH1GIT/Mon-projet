@@ -10,11 +10,8 @@ class PaiementController extends Controller
 {
   public function index(){
     $paiements = Paiement::all();
-    return view("client.paiements.index",compact("paiements"));
+    return view("admin.paiements.index",compact("paiements"));
   }
 
-  public function show(Mission $mission){
-    $paiement = Paiement::with('executant')->where('mission_id', $mission->id)->firstOrFail();
-    return view('client.paiements.show', compact('paiement','mission'));
-  }
+  
 }

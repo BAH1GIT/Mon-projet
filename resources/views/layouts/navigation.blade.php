@@ -30,9 +30,9 @@
 
                 <!-- Navigation Links -->
                 @auth
-                    <x-nav-link :href="route($dashboardRoute)" :active="request()->routeIs('*dashboard*')">
+                    {{-- <x-nav-link :href="route($dashboardRoute)" :active="request()->routeIs('*dashboard*')">
                         Dashboard
-                    </x-nav-link>
+                    </x-nav-link> --}}
                 @else
                     <a href="{{ route('login') }}" class="mr-4 text-blue-500 hover:text-blue-700">Se connecter</a>
                     <a href="{{ route('register') }}" class="text-green-500 hover:text-green-700">S’inscrire</a>
