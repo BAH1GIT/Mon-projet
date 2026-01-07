@@ -8,6 +8,7 @@
     </a>
 
     <table class="table table-responsive table-bordered table-sm">
+        {{-- thead --}}
         <thead>
             <tr>
                 <th>Titre</th>
@@ -19,6 +20,8 @@
                 <th>Actions</th>
             </tr>
         </thead>
+
+        {{-- tbody --}}
         <tbody>
             @forelse ($missions as $mission)
                 <tr>

@@ -77,7 +77,7 @@
                                             <i class="bi bi-credit-card"></i> Paiement
                                         </a>
                                     @else
-                                        <a href="{{ route('client.paiements.show', $offre->id) }}"
+                                        <a href="{{ route('client.offres.show', $offre)}}"
                                             class="btn btn-sm btn-outline-secondary w-100">
                                             Voir offre
                                         </a>

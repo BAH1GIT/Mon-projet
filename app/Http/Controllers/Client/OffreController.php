@@ -19,7 +19,10 @@ class OffreController extends Controller
             ->get();
         return view('client.offres.index', compact('missions'));
     }
-    public function show(Offre $offre) {}
+    public function show(Offre $offre) {
+        $offre ->load('executant','mission');
+        return view('client.offres.show', compact('offre'));
+    }
     public function accepter(Offre $offre)
     {
         $mission =$offre->mission;
@@ -51,6 +54,6 @@ class OffreController extends Controller
                 'executant_id'=> $offre->executant_id,
             ]);
         });
-        return redirect()->route('client.paiements.show', $offre->mission_id)->with('success', 'Offre accepter. Procedure de paiement.');
+        return redirect()->route('client.offres.show')->with('success', 'Offre accepter. Procedure de paiement.');
     }
 };

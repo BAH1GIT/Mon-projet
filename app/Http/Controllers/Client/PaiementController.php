@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mission;
+use App\Models\Offre;
 use App\Models\Paiement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -17,8 +18,8 @@ class PaiementController extends Controller
     
     return view("client.paiements.index",compact("missions"));
   }
-    public function show(Mission $mission){
-    $paiement = Paiement::with('executant')->where('mission_id', $mission->id)->firstOrFail();
-    return view('client.paiements.show', compact('paiement','mission'));
+    public function show(Offre $offre){
+    $paiement = Paiement::with('executant')->where('mission_id', $offre->id)->firstOrFail();
+    return view('client.paiements.show', compact('paiement','offre'));
   }
 }

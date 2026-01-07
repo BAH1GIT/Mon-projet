@@ -34,18 +34,18 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/paiement',[PaiementController::class,'index'])->name('paiements.index');
 });
 
+
 /* ================= ROUTE CLIENT ================= */
 Route::middleware(['auth','client'])->prefix('client')->name('client.')->group(function () {
     Route::get('/dashboard',[ClientDashboardController::class,'index'])->name('dashboard');
     Route::resource('/missions', ClientMission::class);
     Route::get('/offres',[ClientOffre::class,'index'])->name('offres.index');
-    Route::get('/offres/{offre}/show',[ClientOffre::class,'show'])->name('offres.show');
+    Route::get('/offres/{offre}',[ClientOffre::class,'show'])->name('offres.show');
     Route::post('/offres/{offre}/accepter',[ClientOffre::class,'accepter'])->name('offres.accepter');
-    Route::get('/paiement/{mission}',[ClientPaiement::class,'show'])->name('paiements.show');
+    Route::get('/paiement/{offre}',[ClientPaiement::class,'show'])->name('paiements.show');
     Route::get('/paiement',[ClientPaiement::class,'index'])->name('paiements.index');
 });
  
-
 
 /* ================= ROUTE EXECUTANT ================= */
 Route::middleware(['auth', 'executant'])->prefix('executant')->name('executant.')->group(function () {

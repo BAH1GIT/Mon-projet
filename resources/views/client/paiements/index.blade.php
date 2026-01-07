@@ -20,17 +20,17 @@
                 </h5>
 
                 <span class="badge bg-info">
-                    {{ $mission->offres->where('status', 'acceptee')->count() }} paiement(s)
+                    {{ $mission->offres->where('status', 'accepter')->count() }} paiement(s)
                 </span>
             </div>
 
             <div class="card-body">
-                @forelse ($mission->offres->where('status', 'acceptee') as $offre)
+                @forelse ($mission->offres->where('status', 'accepter') as $offre)
                     {{-- Carte Paiement --}}
                     <div class="card border-success mb-3">
                         <div class="card-body">
                             <div class="row align-items-center">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <strong>Exécutant</strong><br>
                                     {{ $offre->executant->name ?? '—' }}
                                 </div>
@@ -47,13 +47,13 @@
                                     </span>
                                 </div>
 
-                                <div class="col-md-2 text-end">
-                                    <a href="{{ route('client.paiements.show', $mission) }}"
-                                       class="btn btn-success btn-sm w-100">
+                                <div class="col-md-3">
+                                    <a href="{{ route('client.paiements.show', $offre) }}"
+                                       class="btn btn-success btn-sm ">
                                         <i class="bi bi-credit-card"></i><br>
                                         Payer
                                     </a>
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </div>
