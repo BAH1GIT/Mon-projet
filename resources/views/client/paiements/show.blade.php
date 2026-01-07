@@ -24,9 +24,6 @@
                 <h5>Montant du paiement</h5>
                 <ul>
                     <li><strong>Montant total :</strong> {{ number_format($paiement->montant, 0, ',', ' ') }} FCFA</li>
-                    <li><strong>Commission : </strong> {{ $paiement->commission_pourcentage }}% </li>
-                    <li><strong>Montant net pour l’exécutant :</strong>
-                        {{ number_format($paiement->montant_net, 0, ',', ' ') }} FCFA</li>
                     <li><strong>Status :</strong>
                         <span
                             class="badge bg-{{ $paiement->status == 'en_attente' ? 'warning' : ($paiement->status == 'payer' ? 'success' : 'danger') }}">
@@ -35,18 +32,13 @@
                     </li>
                 </ul>
 
-                @if ($paiement->status === 'en_attente')
-                    <form action="{{ route('client.offres.index',$mission->id)}}" method="GET">
-                        {{-- @csrf --}}
-
-                        <button type="submit" class="btn btn-outline-success">
-                            <i class="bi bi-credit-card"></i> Procéder au paiement
-                        </button>
-                    </form>
-                @elseif($paiement->status === 'payer')
-                    <span class="text-muted mt-3 d-block">Paiement déjà effectué</span>
+                @if($mission->status === 'attribuer')
+                    <span class="btn btn-success mt-3 ">Paiement déjà effectué</span>
+                    <a href="{{ route('client.paiements.index') }}" class="btn btn-outline-secondary ms-3 mt-3 ">Retour</a>
                 @else
-                    <span class="text-muted mt-3 d-block">Paiement déjà Refusé</span>
+                    <span class="btn btn-success mt-3 d-block">Paiement déjà Refusé</span>
+                    <a href="{{ route('client.paiements.index') }}" class="btn btn-outline-secondary ms-3 mt-3 ">Retour</a>
+
                 @endif
 
             </div>
