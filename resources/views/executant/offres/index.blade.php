@@ -27,7 +27,15 @@
                 <td>{{ number_format($offre->montant, 0, ',', ' ') }} FCFA</td>
                 <td>{{ $offre->message }}</td>
                 <td>
-                    <span class="badge bg-secondary">
+                    @php
+                    $colors =[
+                        'en_attente' => 'warning',
+                        'accepter' => 'success',
+                        'refuser' => 'danger'
+
+                    ]
+                    @endphp
+                    <span class="badge bg-{{ $colors[$offre->status] ?? 'secondary'}}">
                         {{ ucfirst(str_replace('_',' ', $offre->status)) }}
                     </span>
                 </td>

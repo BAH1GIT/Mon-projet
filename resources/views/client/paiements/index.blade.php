@@ -38,6 +38,7 @@
                                     <div class="col-md-3">
                                         <strong>Montant</strong><br>
                                         {{ number_format($offre->montant, 0, ',', ' ') }} FCFA
+
                                     </div>
 
                                     <div class="col-md-3">

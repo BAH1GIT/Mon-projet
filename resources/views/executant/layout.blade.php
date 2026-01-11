@@ -7,22 +7,20 @@
 
     <div class="container-fluid">
         <div class="row">
-
             {{-- SIDEBAR --}}
             <div class="col-md-2 sidebar bg-secondary text-white">
                 Sidebar
                 <ul>
-                    <li><a href="{{ route('executant.missions.disponible') }}">mission Avec Offre</a></li>
-                    <li><a href="{{ route('executant.offres.index') }}">offres</a></li>
-                    <li><a href="{{ route('executant.mission.dispo') }}">Mission disponible</a></li>
+                    <li><a href="{{ route('executant.missions.disponibles') }}">Missions disponible</a></li>
+                    <li><a href="{{ route('executant.offres.index') }}">Mes offres</a></li>
+                    <li><a href="{{ route('executant.missions.offres') }}">Missions Avec Offre</a></li>
+                    <li><a href="{{ route('executant.paiements.index') }}">Mes paiements</a></li>
                 </ul>
             </div>
-
             {{-- MAIN --}}
             <div class="col-md-10 main">
                 @yield('content')
             </div>
-
         </div>
     </div>
 
@@ -30,7 +28,7 @@
     <style>
         .sidebar{
             position: fixed;
-            top: 64px; /* navbar */
+            top: 64px; 
             left: 0;
             width: 16.6667%;
             height: calc(100vh - 64px);

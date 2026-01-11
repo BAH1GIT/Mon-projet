@@ -31,7 +31,7 @@ class OffreController extends Controller
         ])
             ->orderBy('created_at', 'desc')
             ->get();
-        return view('executant.missions.dispo', compact('missions'));
+        return view('executant.missions.disponible', compact('missions'));
     }
 
     /**

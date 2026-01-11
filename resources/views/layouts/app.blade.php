@@ -16,10 +16,24 @@
   rel="stylesheet"
   href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
+<style>
+    .justify-center {
+    justify-content: center !important;
+}
+.splide__slide .card {
+    transition: transform 0.3s ease;
+}
 
+.splide__slide .card:hover {
+    transform: scale(1.03);
+}
+
+</style>
 </head>
 
 <body class="font-sans antialiased">
@@ -40,6 +54,7 @@
             {{ $slot }}
         </main>
     </div>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
 </body>
 

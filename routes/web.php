@@ -13,7 +13,8 @@ use App\Http\Controllers\Client\OffreController as ClientOffre;
 use App\Http\Controllers\ExecutantDashboardController;
 use App\Http\Controllers\Admin\PaiementController as AdminPaiement;
 use App\Http\Controllers\Client\PaiementController as ClientPaiement;
-
+use App\Http\Controllers\Executant\PaiementController as ExecutantPaiement;
+use App\Http\Controllers\Executant\PaiementController;
 
 /* ================= ROUTE ACCUEILL ================= */
 
@@ -52,9 +53,11 @@ Route::middleware(['auth', 'executant'])->prefix('executant')->name('executant.'
     Route::get('/dashboard', [ExecutantDashboardController::class, 'index'])->name('dashboard');
     Route::resource('offres',ExecutantOffre::class)->except('create');
     Route::get('offres/create/{mission}',[ExecutantOffre::class,'create'])->name('offres.create');
-    Route::get('mission-dispo',[ExecutantOffre::class,'dispo'])->name('mission.dispo');
-    Route::get('mission-soumi',[MissionController::class,'indexDisponible'])->name('missions.disponible');
+    Route::get('mission-dispo',[ExecutantOffre::class,'dispo'])->name('missions.disponibles');
+    Route::get('mission-soumi',[MissionController::class,'indexDisponible'])->name('missions.offres');
     Route::get('mission-show/{offre}',[MissionController::class,'show'])->name('missions.show');
+    Route::get('/executant/paiement',[ExecutantPaiement::class,'index'])->name('paiements.index');
+    Route::get('/paiement/{paiement}',[ExecutantPaiement::class,'show'])->name('paiements.show');
 });
 
 require __DIR__.'/auth.php';

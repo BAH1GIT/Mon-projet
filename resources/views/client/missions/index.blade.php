@@ -7,8 +7,8 @@
         + Nouvelle mission
     </a>
 
-    <table class="table table-responsive table-striped table-bordered ">
-        {{-- thead --}}
+    {{-- <table class="table table-responsive table-striped table-bordered ">
+       
         <thead>
             <tr>
                 <th>Titre</th>
@@ -21,7 +21,7 @@
             </tr>
         </thead>
 
-        {{-- tbody --}}
+        
         <tbody>
             @forelse ($missions as $mission)
                 <tr>
@@ -64,7 +64,7 @@
                                 </svg>
                             </a>
 
-                            {{-- <form action="{{ route('client.missions.destroy', $mission->id) }}" method="post">
+                           <form action="{{ route('client.missions.destroy', $mission->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger">
@@ -76,7 +76,7 @@
                                             d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                                     </svg>
                                 </button>
-                            </form> --}}
+                            </form> 
                         </div>
                     </td>
                 </tr>
@@ -88,5 +88,105 @@
                 </tr>
             @endforelse
         </tbody>
-    </table>
+    </table> --}}
+
+    <div id="missions-slider" class="splide">
+        <div class="splide__track">
+            <ul class="splide__list">
+
+                @forelse ($missions as $mission)
+                    @php
+                        $statusColors = [
+                            'en_attente' => 'warning',
+                            'reception_offre' => 'info',
+                            'accepter' => 'success',
+                            'refuser' => 'danger',
+                        ];
+                    @endphp
+
+
+                    <li class="splide__slide">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+
+                                <h5 class="fw-bold">{{ $mission->title }}</h5>
+
+                                <p class="mb-1">
+                                    💰 Budget Max:
+                                    {{ $mission->budget_max ?? '—' }} FCFA
+                                </p>
+
+                                <p class="mb-1">
+                                    📅 Date limite : {{ $mission->date_limit ?? 'indefini' }}
+                                </p>
+
+                                <p class="mb-2">
+                                    <span class="badge bg-{{ $statusColors[$mission->status] ?? 'secondary' }}">
+                                        {{ ucfirst(str_replace('_', ' ', $mission->status)) }}
+                                    </span>
+                                </p>
+
+                                <small class="text-muted">
+                                    Créée le {{ $mission->created_at->format('d/m/Y') }}
+                                </small>
+
+                                <div class="d-flex gap-2 mt-3">
+                                    <a href="{{ route('client.missions.show', $mission->id) }}"
+                                        class="btn btn-outline-info btn-sm">
+                                        Voir
+                                    </a>
+
+                                    <a href="{{ route('client.missions.edit', $mission->id) }}"
+                                        class="btn btn-outline-warning btn-sm">
+                                        Modifier
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+
+                @empty
+                    <li class="splide__slide text-center">
+                        <p>Aucune mission</p>
+                    </li>
+                @endforelse
+
+            </ul>
+        </div>
+    </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const totalMissions = {{ $missions->count() }};
+
+        const splide = new Splide('#missions-slider', {
+            type: totalMissions >= 3 ? 'loop' : 'slide',
+            perPage: Math.min(3, totalMissions),
+            gap: '1rem',
+            arrows: totalMissions > 1,
+            pagination: totalMissions > 1,
+            speed: 800, // animation plus fluide
+            easing: 'ease-in-out', // douceur
+            autoplay: totalMissions > 2,
+            interval: 3000,
+            pauseOnHover: true,
+            breakpoints: {
+                992: {
+                    perPage: Math.min(2, totalMissions)
+                },
+                576: {
+                    perPage: 1
+                },
+            }
+        });
+
+        splide.mount();
+
+        // 👉 Centrer les slides si moins de 3 missions
+        if (totalMissions < 3) {
+            const track = document.querySelector('#missions-slider .splide__list');
+            track.classList.add('justify-center');
+        }
+    });
+</script>
 @endsection

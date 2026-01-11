@@ -1,41 +1,44 @@
 @extends('executant.layout')
 
 @section('content')
-    <h3>Mes missions (offres soumises)</h3>
+    <h3 class="text-center">Toutes les missions</h3>
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Client</th>
+                    <th>Budget min</th>
+                    <th>Budget max</th>
+                    <th>Date limite</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($missions as $mission)
+                    <tr>
+                        <td>{{ $mission->title }}</td>
+                        <td>{{ $mission->client->name ?? '—' }}</td>
+                        <td>{{ $mission->budget_min }}</td>
+                        <td>{{ $mission->budget_max ?? '—' }}</td>
+                        <td>{{ $mission->date_limit ?? '—' }}</td>
+                        <td>{{ $mission->status }}</td>
 
-    @if ($missions->isEmpty())
-        <p>Aucune mission trouvée.</p>
-    @endif
+                        <td>
+                            <div class="d-flex justify-content-center align-item-center gap-1">
 
-    @foreach ($missions as $mission)
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="form-control"><strong>Titre de la mission</strong>{{ $mission->title }}</h5>
-                <p class="form-control"><strong>Client :</strong>{{ $mission->client->name }}</p>
 
-                <p class="form-control"><strong>Description</strong>{{ $mission->description }}</p>
+                                <a href="{{ route('executant.offres.create', $mission->id) }}"
+                                    class="btn btn-outline-warning">
+                                    Soummetre une offre
+                                </a>
 
-                @foreach ($mission->offres as $offre)
-                    <span class="form-control"><strong>Executant :</strong>{{ $offre->executant->name }}</span>
-                    <p class="text-success  ms-2">
-                        💰 Mon offre : {{ $offre->montant }} FCFA
-                    </p>
+                            </div>
+                        </td>
+                    </tr>
                 @endforeach
-
-                <p class="form-control">
-                    <strong>Statut mission :</strong>
-                    {{ $mission->status }}
-                </p>
-
-                @if (in_array($mission->status, ['en_attente', 'reception_offre']))
-                    
-
-                    <a href="{{ route('executant.missions.show', $offre->id) }}" class="btn btn-primary btn-sm">
-                        Voir détails
-                    </a>
-                    
-                @endif
-            </div>
-        </div>
-    @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection

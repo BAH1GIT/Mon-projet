@@ -22,7 +22,7 @@ class MissionController extends Controller
             ->orderByDesc('created_at')
             ->get();
 
-        return view('executant.missions.disponible', compact('missions'));
+        return view('executant.missions.missionOffre', compact('missions'));
     }
 
     public function show(Mission $mission )

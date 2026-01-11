@@ -27,7 +27,7 @@
                             <td>{{ number_format($paiement->montant_net, 0, ',', ' ') }} FCFA</td>
                             <td>
                                 @php
-                                    $paiementStatus = $offre->paiement->status ?? 'en_attente';
+                                    // $paiementStatus = $offre->paiement->status ?? 'en_attente';
 
                                     $statusColors = [
                                         'en_attente' => 'warning',
@@ -35,8 +35,8 @@
                                     ];
                                 @endphp
 
-                                <span class="badge bg-{{ $statusColors[$paiementStatus] ?? 'secondary' }}">
-                                    {{ ucfirst(str_replace('_', ' ', $paiementStatus)) }}
+                                <span class="badge bg-{{ $statusColors[$paiement->status] ?? 'secondary' }}">
+                                    {{ ucfirst(str_replace('_', ' ', $paiement->status)) }}
                                 </span>
 
                             </td>
@@ -63,7 +63,7 @@
                                     </svg>
                                 </a>
 
-                                <form action="{{ route('admin.paiements.destroy', $paiement->id) }}" method="post">
+                                {{-- <form action="{{ route('admin.paiements.destroy', $paiement->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger">
@@ -75,7 +75,7 @@
                                                 d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                                         </svg>
                                     </button>
-                                </form>
+                                </form> --}}
                             </div>
                         </td>
                         </tr>
