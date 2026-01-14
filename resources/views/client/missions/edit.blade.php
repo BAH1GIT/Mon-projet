@@ -36,5 +36,8 @@
         <button class="btn btn-success" type="submit">
             Modifier
         </button>
+         <a href="{{ route('client.missions.index') }}" class="btn btn-secondary">
+        Annuler
+    </a>
     </form>
 @endsection

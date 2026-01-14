@@ -12,14 +12,14 @@ use Illuminate\Http\Request;
 class PaiementController extends Controller
 {
     public function index(){
-        $paiements =Paiement::with(['mission','client'])
+        $paiements =Paiement::with(['mission','client','conclusion'])
         ->where('executant_id',Auth::id())
         ->orderBy('created_at','desc')
         ->get();
         return view('executant.paiements.index',compact('paiements'));
     }
     public function show(Paiement $paiement){
-        $paiement ->load(['mission','client']);
+        $paiement ->load(['mission','client','conclusion']);
         return view('executant.paiements.show',compact('paiement'));
     }
 }

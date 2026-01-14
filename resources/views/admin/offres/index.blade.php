@@ -7,6 +7,7 @@
             <thead>
                 <tr>
                     <th>Mission</th>
+                    <th>Client</th>
                     <th>Exécutant</th>
                     <th>Montant</th>
                     <th>Message</th>
@@ -18,6 +19,7 @@
                 @forelse($offres as $offre)
                     <tr>
                         <td>{{ $offre->mission->title }}</td>
+                        <td>{{ $offre->mission->client->name }}</td>
                         <td>{{ $offre->executant->name }}</td>
                         <td>{{ number_format($offre->montant, 0, ',', ' ') }} FCFA</td>
                         <td>{{ $offre->message }}</td>

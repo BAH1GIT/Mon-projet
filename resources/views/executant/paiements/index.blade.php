@@ -8,7 +8,8 @@
                 <th>Mission</th>
                 <th>Client</th>
                 <th>Montant reçu</th>
-                <th>Status</th>
+                <th>Paiemnet status</th>
+                <th>Paiement Liberer</th>
                 <th>Date</th>
                 <th>Action</th>
             </tr>
@@ -25,6 +26,13 @@
                         <span class="badge bg-{{ $paiement->status === 'payer' ? 'success' : 'warning' }}">
                             {{ ucfirst($paiement->status) }}
                         </span>
+                    </td>
+                    <td>
+                @if ($paiement->conclusion && $paiement->conclusion->validation_client)
+                <span class="badge bg-success">paiement liberer</span>
+                @else
+                <span class="badge bg-warning text-dark">paiement indisponible avant la fin du travail</span>
+                @endif
                     </td>
 
                     <td>{{ $paiement->created_at->format('d/m/y') }}</td>

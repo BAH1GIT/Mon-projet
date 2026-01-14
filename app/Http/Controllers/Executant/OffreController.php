@@ -6,6 +6,7 @@ use App\Models\Offre;
 use App\Models\Mission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Conclusion;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -122,4 +123,5 @@ class OffreController extends Controller
             ->route('executant.offres.index')
             ->with('success', 'Offre supprimée avec succès');
     }
+
 }

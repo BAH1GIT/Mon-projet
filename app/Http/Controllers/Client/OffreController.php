@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Conclusion;
 use App\Models\Mission;
 use App\Models\Offre;
 use App\Models\Paiement;
@@ -56,6 +57,7 @@ class OffreController extends Controller
                 'executant_id' => $offre->executant_id,
             ]);
         });
-        return redirect()->route('client.offres.show')->with('success', 'Offre accepter. Procedure de paiement.');
+        return redirect()->route('client.offres.show',$offre->id)->with('success', 'Offre accepter. Procedure de paiement.');
     }
+    
 };

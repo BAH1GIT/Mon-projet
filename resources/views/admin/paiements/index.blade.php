@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container py-5">
         <h2 class="mb-4">Tous les paiements</h2>
         <div class="table-responsive">
             <table class="table  table-striped">

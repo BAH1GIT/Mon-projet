@@ -53,7 +53,7 @@
 
             <div class="d-flex gap-2">
                 @if ($offre->status === 'en_attente')
-                    <form action="{{ route('client.offres.accepter', $offre) }}" method="POST">
+                    <form action="{{ route('client.offres.accepter', $offre->id) }}" method="POST">
                         @csrf
                         <button class="btn btn-success">
                             <i class="bi bi-check-lg"></i> Accepter l'offre

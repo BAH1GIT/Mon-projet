@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container py-5">
-        <h1 class="mb-4">Paiement de la mission : {{ $mission->title }}</h1>
+        <h1 class="mb-4">Paiement de la mission : {{ $paiement->mission->title }}</h1>
 
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -16,8 +16,8 @@
 
                 <h5>Détails de la mission</h5>
                 <ul>
-                    <li><strong>Titre de la mission :</strong> {{ $mission->title }}</li>
-                    <li><strong>Description :</strong> {{ $mission->description }}</li>
+                    <li><strong>Titre de la mission :</strong> {{ $paiement->mission->title }}</li>
+                    <li><strong>Description :</strong> {{ $paiement->mission->description }}</li>
                     <li><strong>Exécutant :</strong> {{ $paiement->executant->name ?? '—' }}</li>
                 </ul>
 
@@ -32,7 +32,7 @@
                     </li>
                 </ul>
 
-                @if($mission->status === 'attribuer')
+                @if($paiement->mission->status === 'attribuer')
                     <span class="btn btn-success mt-3 ">Paiement déjà effectué</span>
                     <a href="{{ route('client.paiements.index') }}" class="btn btn-outline-secondary ms-3 mt-3 ">Retour</a>
                 @else

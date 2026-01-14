@@ -42,6 +42,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end me-4">
+                <a href="{{ route('executant.offres.index') }}" class="btn btn-outline-secondary me-2">Retour</a>
                 <button class="btn btn-outline-success">Envoyer l’offre</button>
 
             </div>

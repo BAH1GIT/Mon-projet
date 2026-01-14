@@ -11,7 +11,6 @@
                 <strong>Mission :</strong>
                 {{ $paiement->client->name }}
             </p>
-            <hr>
             <p class="mb-1 form-control">
                 <strong>Montant :</strong>
                 {{ number_format($paiement->montant, 0, ',', '') }} FCFA
@@ -33,26 +32,27 @@
                     ];
                     $text = [
                         'en_attente' => 'dark',
-                        'payer' => 'light'
+                        'payer' => 'light',
                     ];
                 @endphp
                 <strong>Status :</strong>
-                <span class="badge bg-{{ $colors[$paiement->status] ?? 'secondary' }} text-{{ $text[$paiement->status] ??'secondary' }}">
-                {{ ucfirst($paiement->status) }}
+                <span
+                    class="badge bg-{{ $colors[$paiement->status] ?? 'secondary' }} text-{{ $text[$paiement->status] ?? 'secondary' }}">
+                    {{ ucfirst($paiement->status) }}
                 </span>
             </p>
             <p class="form-control mb-1">
                 <strong>Date :</strong>
                 {{ $paiement->created_at->format('d/m/y H:i') }}
             </p>
-             <p class="form-control mb-1">
+            <p class="form-control mb-1">
                 <strong>Liberable :</strong>
-                @if ($paiement->status === 'en_attente')
-                <span class="badge bg-warning text-dark">paiement indisponible avant la fin du travail</span>
+                @if ($paiement->conclusion && $paiement->conclusion->validation_client)
+                    <span class="badge bg-success">paiement liberer</span>
                 @else
-                <span class="badge bg-success">paiement liberer</span>
+                    <span class="badge bg-warning text-dark">paiement indisponible avant la fin du travail</span>
                 @endif
-                
+
             </p>
             <a href="{{ route('executant.paiements.index') }}" class="btn btn-outline-secondary">Retour</a>
         </div>

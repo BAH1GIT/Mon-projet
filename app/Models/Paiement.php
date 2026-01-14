@@ -30,4 +30,7 @@ class Paiement extends Model
     {
         return $this->belongsTo(User::class, 'client_id');
     }
+    public function conclusion(){
+        return $this->hasOne(Conclusion::class,'mission_id','mission_id');
+    }
 }

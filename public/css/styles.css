@@ -1,0 +1,38 @@
+
+            .bg{
+                background:#1e88e5;
+                color:#e6a454;
+                min-height:100vh;
+            }
+            .color1{
+                color: #fb8c00;
+                background-color: #1e88e5;
+                
+            }
+            .color2{
+                color: #1e88e5;
+                background-color: #fb8c00;
+
+            }
+            #apropos{
+                background-color: #fb8c00;
+                color: #1e88e5;
+                min-height:100vh;
+
+            }
+
+            .nav1{
+                position: fixed;
+                top: 0;
+                left: 0;
+                background-color:#8feaf4;
+                z-index: 1000;
+                width: 100vw;
+                padding:0 16px;
+            }
+            main{
+                margin-top: 70px;
+            }
+
+
+     

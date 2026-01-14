@@ -13,18 +13,18 @@ class PaiementController extends Controller
 {
   public function index()
   {
-    $missions = Mission::with(['offres.executant', 'offres.paiement'])
-      ->where('client_id', Auth::id())
+    // $missions = Mission::with(['offres.executant', 'offres.paiement'])
+    //   ->where('client_id', Auth::id())
+    //   ->get();
+    $paiements = Paiement::with(['executant', 'mission'])
+      ->where('client_id', Auth::id())  
       ->get();
 
-    return view("client.paiements.index", compact("missions"));
+    return view("client.paiements.index", compact("paiements"));
   }
-  public function show(Mission $mission)
+  public function show(Paiement $paiement)
   {
-    $paiement = Paiement::with('executant')
-      ->where('mission_id', $mission->id)
-      ->firstOrFail();
-
-    return view('client.paiements.show', compact('paiement', 'mission'));
+    $paiement -> load('mission','executant');
+    return view('client.paiements.show', compact('paiement'));
   }
 }

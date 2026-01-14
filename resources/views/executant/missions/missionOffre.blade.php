@@ -28,13 +28,24 @@
                 </p>
 
                 @if (in_array($mission->status, ['en_attente', 'reception_offre']))
-                    
-
                     <a href="{{ route('executant.missions.show', $offre->id) }}" class="btn btn-primary btn-sm">
                         Voir détails
                     </a>
-                    
                 @endif
+
+                @if (!$mission->conclusion)
+                    <!-- Bouton pour signaler mission terminée -->
+                    <form action="{{ route('executant.mission.terminer', $mission->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-success">
+                            ✅ Cliquer pour Terminer la mission
+                        </button>
+                    </form>
+                @else
+                    <span class="badge bg-warning">Mission terminée</span>
+                @endif
+
+
             </div>
         </div>
     @endforeach

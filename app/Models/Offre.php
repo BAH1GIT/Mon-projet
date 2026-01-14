@@ -25,9 +25,9 @@ class Offre extends Model
         return $this->belongsTo(Mission::class,"mission_id");
     }
 
-    public function client(){
-        return $this->mission->client ?? null;
-    }
+    // public function client(){
+    //     return $this->mission->client ?? null;
+    // }
     public function paiement(){
         return $this->hasOne(Paiement::class,"mission_id","mission_id")
         ->where('paiements.executant_id','offres.executant_id');

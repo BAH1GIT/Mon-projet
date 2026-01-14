@@ -1,20 +1,30 @@
 <?php
-
-use App\Http\Controllers\Admin\MissionController as AdminMission;
-use App\Http\Controllers\Admin\OffreController as AdminOffre;
-use App\Http\Controllers\Executant\OffreController as ExecutantOffre;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+
+
+
 use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\Client\MissionController as ClientMission;
-use App\Http\Controllers\ClientDashboardController;
-use App\Http\Controllers\Executant\MissionController;
-use App\Http\Controllers\Client\OffreController as ClientOffre;
-use App\Http\Controllers\ExecutantDashboardController;
+use App\Http\Controllers\Admin\MissionController as AdminMission;
 use App\Http\Controllers\Admin\PaiementController as AdminPaiement;
+use App\Http\Controllers\Admin\OffreController as AdminOffre;
+
+
+
+use App\Http\Controllers\ClientDashboardController;
+use App\Http\Controllers\Client\OffreController as ClientOffre;
+use App\Http\Controllers\Client\ConclusionControlleur as ClientConclusion;
 use App\Http\Controllers\Client\PaiementController as ClientPaiement;
+use App\Http\Controllers\Client\MissionController as ClientMission;
+
+
+
+use App\Http\Controllers\ExecutantDashboardController;
+use App\Http\Controllers\Executant\MissionController;
+use App\Http\Controllers\Executant\OffreController as ExecutantOffre;
+use App\Http\Controllers\Executant\ConclusionControlleur as ExecutantConclusion;
 use App\Http\Controllers\Executant\PaiementController as ExecutantPaiement;
-use App\Http\Controllers\Executant\PaiementController;
+
 
 /* ================= ROUTE ACCUEILL ================= */
 
@@ -26,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 /* ================= ROUTE ADMIN ================= */
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -43,8 +54,9 @@ Route::middleware(['auth','client'])->prefix('client')->name('client.')->group(f
     Route::get('/offres',[ClientOffre::class,'index'])->name('offres.index');
     Route::get('/offres/{offre}',[ClientOffre::class,'show'])->name('offres.show');
     Route::post('/offres/{offre}/accepter',[ClientOffre::class,'accepter'])->name('offres.accepter');
-    Route::get('/paiement/{mission}',[ClientPaiement::class,'show'])->name('paiements.show');
+    Route::get('/paiement/{paiement}',[ClientPaiement::class,'show'])->name('paiements.show');
     Route::get('/paiement',[ClientPaiement::class,'index'])->name('paiements.index');
+    Route::post('/conclusion/{mission}/valider',[ClientConclusion::class,'valider'])->name('mission.valider');
 });
  
 
@@ -58,6 +70,7 @@ Route::middleware(['auth', 'executant'])->prefix('executant')->name('executant.'
     Route::get('mission-show/{offre}',[MissionController::class,'show'])->name('missions.show');
     Route::get('/executant/paiement',[ExecutantPaiement::class,'index'])->name('paiements.index');
     Route::get('/paiement/{paiement}',[ExecutantPaiement::class,'show'])->name('paiements.show');
+    Route::post('conclusion/{mission}/terminer',[ExecutantConclusion::class,'terminer'])->name('mission.terminer');
 });
 
 require __DIR__.'/auth.php';
