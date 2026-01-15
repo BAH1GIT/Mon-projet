@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\ProfileController;
 
 
@@ -16,21 +17,15 @@ use App\Http\Controllers\Client\OffreController as ClientOffre;
 use App\Http\Controllers\Client\ConclusionControlleur as ClientConclusion;
 use App\Http\Controllers\Client\PaiementController as ClientPaiement;
 use App\Http\Controllers\Client\MissionController as ClientMission;
-
-
-
 use App\Http\Controllers\ExecutantDashboardController;
 use App\Http\Controllers\Executant\MissionController;
 use App\Http\Controllers\Executant\OffreController as ExecutantOffre;
 use App\Http\Controllers\Executant\ConclusionControlleur as ExecutantConclusion;
 use App\Http\Controllers\Executant\PaiementController as ExecutantPaiement;
 
-
 /* ================= ROUTE ACCUEILL ================= */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class,'index'])->name('welcome.index');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
