@@ -60,4 +60,5 @@ class OffreController extends Controller
         return redirect()->route('client.offres.show',$offre->id)->with('success', 'Offre accepter. Procedure de paiement.');
     }
     
+    
 };

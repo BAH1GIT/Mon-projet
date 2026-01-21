@@ -22,7 +22,7 @@
 
 
     <!-- ================= NAVBAR ================= -->
-    <nav class="navbar navbar-expand-lg nav1 fixed-top p-0">
+    <nav class="navbar navbar-expand-lg nav1 fixed-top p-0" style="z-index:1000">
         <div class="container m-0">
             <a class="navbar-brand fw-bold text-white" href="#">
                 <x-application-logo />
@@ -259,7 +259,7 @@
             <div class="col-md-4">
                 <x-application-logo />
                 <p class="text-light small">
-                    Plateforme de mise en relation entre clients et exécutants
+                    Plateforme de mise en relation entre clients et prestateurs
                     pour des services rapides, fiables et sécurisés.
                 </p>
             </div>

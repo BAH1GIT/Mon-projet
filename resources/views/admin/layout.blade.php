@@ -12,6 +12,7 @@
             <div class="col-md-2 sidebar bg-secondary text-white">
                 Sidebar
                 <ul>
+                    <li><a href="{{ route('admin.dashboard') }}">Accueil</a></li>
                     <li><a href="{{ route('admin.missions.index') }}">mission</a></li>
                     <li><a href="{{ route('admin.offres.index') }}">offres</a></li>
                     <li><a href="{{ route('admin.paiements.index') }}">Paiements</a></li>

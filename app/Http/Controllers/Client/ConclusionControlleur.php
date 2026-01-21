@@ -19,14 +19,19 @@ class ConclusionControlleur extends Controller
 
         ]);
         $conclusion = Conclusion::where('mission_id', $mission->id)
-        ->where('client_id', Auth::id())
-        ->firstOrFail();
+            ->where('client_id', Auth::id())
+            ->firstOrFail();
 
         $conclusion->update([
             'validation_client' => true,
             'rating' => $request->rating,
             'commentaire' => $request->commentaire,
         ]);
+
+        $mission->update([
+            'status' => 'terminer'
+        ]);
+
 
         $paiement = Paiement::where('mission_id', $mission->id)->first();
         if ($paiement && $paiement->status !== 'payer') {

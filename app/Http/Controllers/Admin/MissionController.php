@@ -19,7 +19,10 @@ class MissionController extends Controller
     $missions = Mission::with(['client', 'executant'])->get(); 
     return view('admin.missions.index', compact('missions'));
 }
-
+public function indexApi(){
+    $missions = Mission::with(['client','executant'])->get();
+    return response()->json($missions);
+}
     public function show(Mission $mission)
     {
         return view('admin.missions.show', compact('mission'));

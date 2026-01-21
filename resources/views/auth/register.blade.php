@@ -12,22 +12,17 @@
         {{--  Email Address --}}
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="off" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-       {{-- Password --}}
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                type="password"
-                name="password"
-                required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+         {{--telephone--}}
+        <div>
+            <x-input-label for="telephone" :value="__('telephone')" />
+            <x-text-input id="telephone" class="block mt-1 w-full" type="number" name="telephone" :value="old('telephone')" required autofocus autocomplete="off" />
+            <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
         </div>
-
+   
         {{-- role --}}
         <div class="">
             <x-input-label for="Role" :value="__('Role')" />
@@ -39,6 +34,19 @@
             <x-input-error :messages="$errors->get('role')" class="mt-2" />
 
         </div>
+
+            {{-- Password --}}
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Password')" />
+
+            <x-text-input id="password" class="block mt-1 w-full"
+                type="password"
+                name="password"
+                required autocomplete="off" />
+
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
+
         {{-- Confirm Password  --}}
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
@@ -49,35 +57,11 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-       {{--telephone--}}
-        <div>
-            <x-input-label for="telephone" :value="__('telephone')" />
-            <x-text-input id="telephone" class="block mt-1 w-full" type="number" name="telephone" :value="old('telephone')" required autofocus autocomplete="telephone" />
-            <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
-        </div>
+      
 
-          {{--ville--}}
-        <div>
-            <x-input-label for="ville" :value="__('ville')" />
-            <x-text-input id="ville" class="block mt-1 w-full" type="text" name="ville" :value="old('ville')" required autofocus autocomplete="ville" />
-            <x-input-error :messages="$errors->get('ville')" class="mt-2" />
-        </div>
-
-          {{--longitude--}}
-        <div>
-            <x-input-label for="longitude" :value="__('longitude')" />
-            <x-text-input id="longitude" class="block mt-1 w-full" type="number" name="longitude" :value="old('longitude')" required autofocus autocomplete="longitude" />
-            <x-input-error :messages="$errors->get('longitude')" class="mt-2" />
-        </div>
-       {{--latitude--}}
-        <div>
-            <x-input-label for="latitude" :value="__('latitude')" />
-            <x-text-input id="latitude" class="block mt-1 w-full" type="number" name="latitude" :value="old('latitude')" required autofocus autocomplete="latitude" />
-            <x-input-error :messages="$errors->get('latitude')" class="mt-2" />
-        </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+            <a  class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
 

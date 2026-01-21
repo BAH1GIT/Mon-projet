@@ -104,8 +104,8 @@
                         $statusColors = [
                             'en_attente' => 'warning',
                             'reception_offre' => 'info',
-                            'attribuer' => 'success',
-                            'refuser' => 'danger',
+                            'attribuer' => 'primary',
+                            'terminer' => 'success'
                         ];
                     @endphp
 
