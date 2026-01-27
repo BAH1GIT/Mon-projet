@@ -39,7 +39,8 @@ class OffreController extends Controller
             Offre::where('mission_id', $mission->id)
                 ->where('id', '!=', $offre->id)
                 ->update(['status' => 'refuser']);
-
+            
+            $mission =$mission->refresh();
             $mission->status = 'attribuer';
             $mission->save();
 

@@ -7,18 +7,9 @@
 
     <div class="container-fluid">
         <div class="row">
-            {{-- SIDEBAR --}}
-            <div class="col-md-2 sidebar bg-secondary text-white">
-                Sidebar
-                <ul>
-                    <li><a href="{{ route('executant.missions.disponibles') }}">Missions disponible</a></li>
-                    <li><a href="{{ route('executant.offres.index') }}">Mes offres</a></li>
-                    <li><a href="{{ route('executant.missions.offres') }}">Missions Avec Offre</a></li>
-                    <li><a href="{{ route('executant.paiements.index') }}">Mes paiements</a></li>
-                </ul>
-            </div>
+            
             {{-- MAIN --}}
-            <div class="col-md-10 main">
+            <div class="     main">
                 @yield('content')
             </div>
         </div>
@@ -26,17 +17,8 @@
 
     @push('styles')
     <style>
-        .sidebar{
-            position: fixed;
-            top: 64px; 
-            left: 0;
-            width: 16.6667%;
-            height: calc(100vh - 64px);
-            background-color: #505350ff;
-        }
-
+    
         .main{
-            margin-left: 16.6667%;
             min-height: calc(100vh - 64px);
             /* background-color: yellow; */
         }

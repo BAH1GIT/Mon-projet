@@ -8,7 +8,7 @@ use App\Models\Mission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class ConclusionControlleur extends Controller
+class ConclusionController extends Controller
 {
     
     public function terminer(Mission $mission){

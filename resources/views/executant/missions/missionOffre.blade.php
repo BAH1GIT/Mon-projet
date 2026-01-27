@@ -34,7 +34,7 @@
                 @endif
 
                 @if (!$mission->conclusion)
-                    <!-- Bouton pour signaler mission terminée -->
+                {{--   Bouton pour signaler mission terminée --}}
                     <form action="{{ route('executant.mission.terminer', $mission->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-sm btn-success">

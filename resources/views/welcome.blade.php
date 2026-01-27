@@ -53,7 +53,7 @@
     <!-- ================= MAIN ================= -->
     <main>
 
-        <!-- ===== ACCUEIL ===== -->
+        {{-- ACCUEIL --}}
         <section id="accueil" class="hero text-center text-white">
             <div class="container">
                 <h1 class="fw-bold">Trouvez rapidement un exécutant fiable</h1>
@@ -62,8 +62,7 @@
             </div>
         </section>
 
-        <!-- ===== A PROPOS ===== -->
-        <!-- ===== A PROPOS ===== -->
+        {{-- A Propos --}}
         <section id="apropos" class="py-5 apropos-section">
             <div class="container">
                 <h2 class="text-center p-2 titre mb-5 fw-bold">À propos</h2>
@@ -71,7 +70,7 @@
 
                 <div class="row align-items-stretch g-4">
 
-                    <!-- Texte -->
+                    {{-- Texte --}}
                     <div class="col-md-6 d-flex  ">
                         <div class="card shadow-sm w-100 p-2">
                             <h3 class="fw-bold mb-3">Pourquoi choisir <span class="text_warning">diba</span><span
@@ -101,7 +100,7 @@
 
                     </div>
 
-                    <!-- Cartes statistiques -->
+                    {{-- Cartes statistiques --}}
                     <div class="col-md-6 d-flex">
                         <div class="px-auto w-100  h-100 shadow-sm align-items-center">
                             <div class="row g-4 w-100 h-100 pt-1">
@@ -142,24 +141,13 @@
                 </div>
             </div>
         </section>
-
-
-
-        <!-- ===== SERVICES ===== -->
+        {{-- SERVICES  --}}
         <section id="service" class="py-5 bg-light">
             <div class="container">
                 <h2 class="text-center titre p-2 mb-5 fw-bold">Nos Services</h2>
 
                 <div class="row g-2 mb-2">
-                    @foreach ([
-                        ['icon' => '🛠️', 'title' => 'Réparation', 'desc' => 'Réparation rapide et efficace.'], 
-                        ['icon' => '🚚', 'title' => 'Livraison', 'desc' => 'Livraison rapide et sécurisée de vos produits.'],
-                         ['icon' => '🧹', 'title' => 'Nettoyage', 'desc' => 'Service de nettoyage professionnel pour maison et bureau.'],
-                          ['icon' => '💻', 'title' => 'Informatique', 'desc' => 'Assistance et maintenance informatique personnalisée.'],
-                           ['icon' => '🌐', 'title' => 'landing page', 'desc' => 'Developpement site web dinamyque et responsive .'],
-                            ['icon' => '📦', 'title' => 'Gestion Stock', 'desc' => 'Mise en place de site web avec laravle et angular.'], 
-                            ['icon' => '🛒', 'title' => 'Site Ecommerce', 'desc' => 'Site Securisé et rapidement accessible grace un seo exceptionnel.'], 
-                            ['icon' => '🏭', 'title' => "Exploitation", 'desc' => 'Guide à lutlisation des materiels pour .']] as $service)
+                    @foreach ([['icon' => '🛠️', 'title' => 'Réparation', 'desc' => 'Réparation rapide et efficace.'], ['icon' => '🚚', 'title' => 'Livraison', 'desc' => 'Livraison rapide et sécurisée de vos produits.'], ['icon' => '🧹', 'title' => 'Nettoyage', 'desc' => 'Service de nettoyage professionnel pour maison et bureau.'], ['icon' => '💻', 'title' => 'Informatique', 'desc' => 'Assistance et maintenance informatique personnalisée.'], ['icon' => '🌐', 'title' => 'landing page', 'desc' => 'Developpement site web dinamyque et responsive .'], ['icon' => '📦', 'title' => 'Gestion Stock', 'desc' => 'Mise en place de site web avec laravle et angular.'], ['icon' => '🛒', 'title' => 'Site Ecommerce', 'desc' => 'Site Securisé et rapidement accessible grace un seo exceptionnel.'], ['icon' => '🏭', 'title' => 'Exploitation', 'desc' => 'Guide à lutlisation des materiels pour .']] as $service)
                         <div class="col-md-3 col-sm-6">
                             <div class="service-card text-center p-4">
                                 <div class="service-icon mb-3">{{ $service['icon'] }}</div>
@@ -171,7 +159,7 @@
                     @endforeach
                 </div>
 
-                <div class="row g-2 mt-2">
+                {{-- <div class="row g-2 mt-2">
                     @forelse($missions as $mission)
                         <div class="col-md-3 col-sm-6">
                             <div class="service-card  p-4">
@@ -189,7 +177,7 @@
 
                     @empty
                         <p class="text-center">Aucune mission trouver</p>
-                    @endempty
+                    @endempty --}}
             </div>
         </div>
 
@@ -197,7 +185,7 @@
 
     </section>
 
-    <!-- ===== POPULAIRES ===== -->
+    {{-- POPULAIRES --}}
     <section id="populaire" class="py-5">
         <div class="container">
             <h2 class="text-center titre p-2 mb-4">Exécutants Populaires</h2>

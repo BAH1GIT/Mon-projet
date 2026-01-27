@@ -14,13 +14,13 @@ use App\Http\Controllers\Admin\OffreController as AdminOffre;
 
 use App\Http\Controllers\ClientDashboardController;
 use App\Http\Controllers\Client\OffreController as ClientOffre;
-use App\Http\Controllers\Client\ConclusionControlleur as ClientConclusion;
+use App\Http\Controllers\Client\ConclusionController as ClientConclusion;
 use App\Http\Controllers\Client\PaiementController as ClientPaiement;
 use App\Http\Controllers\Client\MissionController as ClientMission;
 use App\Http\Controllers\ExecutantDashboardController;
 use App\Http\Controllers\Executant\MissionController;
 use App\Http\Controllers\Executant\OffreController as ExecutantOffre;
-use App\Http\Controllers\Executant\ConclusionControlleur as ExecutantConclusion;
+use App\Http\Controllers\Executant\ConclusionController as ExecutantConclusion;
 use App\Http\Controllers\Executant\PaiementController as ExecutantPaiement;
 
 /* ================= ROUTE ACCUEILL ================= */

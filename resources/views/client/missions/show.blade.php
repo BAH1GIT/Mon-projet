@@ -18,7 +18,7 @@
             @csrf
             <div class="mb-2">
                 <label for="note" class="form-label">Note</label>
-                <select name="rating" id="note" class="fom-control" required>
+                <select name="rating" id="note" class="form-control" required>
                     <option value="1">⭐</option>
                     <option value="2">⭐⭐</option>
                     <option value="3">⭐⭐⭐</option>
@@ -33,8 +33,7 @@
             <button class="btn btn-success">Valider Travail terminer</button>
 
         </form>
-    @else
-        {{-- <span class="badge bg-success">Mission validée</span> --}}
+
     @endif
 
     <a href="{{ route('client.missions.index') }}" class="btn btn-secondary">

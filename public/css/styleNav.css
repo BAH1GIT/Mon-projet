@@ -1,0 +1,20 @@
+.justify-center {
+    justify-content: center !important;
+}
+.splide__slide .card {
+    transition: transform 0.3s ease;
+}
+
+.splide__slide .card:hover {
+    transform: scale(1.03);
+}
+.van1 {
+    background-color: rgb(186, 220, 220) !important;
+}
+
+.main {
+    padding-top: 64px !important;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    background-color: burlywood !important;
+}

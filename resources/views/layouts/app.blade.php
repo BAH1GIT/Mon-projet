@@ -12,25 +12,13 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="stylesheet" href="{{ asset('css/styleNav.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
-<style>
-    .justify-center {
-    justify-content: center !important;
-}
-.splide__slide .card {
-    transition: transform 0.3s ease;
-}
 
-.splide__slide .card:hover {
-    transform: scale(1.03);
-}
-
-</style>
 </head>
 
 <body class="font-sans antialiased">
@@ -38,13 +26,13 @@
         @include('layouts.navigation')
 
         <!-- Page Heading -->
-        @isset($header)
+        {{-- @isset($header)
         <header class="bg-white shadow  headers">
             <div class="max-w-7xl mx-auto text-center py-6 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>
         </header>
-        @endisset
+        @endisset --}}
 
         <!-- Page Content -->
         <main>

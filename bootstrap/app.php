@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin'=>\App\Http\Middleware\IsAdmin::class,
             'client'=>\App\Http\Middleware\IsClient::class,
             'executant'=>\App\Http\Middleware\IsExecutant::class,
+            'gest'=>\App\Http\Middleware\RedirectIfAuthenticated::class,
         ]);
 
     })
